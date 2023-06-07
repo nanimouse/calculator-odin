@@ -3,6 +3,8 @@
     <head>
         <script src="script.js"></script>
         <link rel="stylesheet" href="style.css">
+        <link href='https://fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+
         <title>Calculator</title>
     </head>
     <body>
@@ -15,14 +17,14 @@
                     </div>
                     <div id="buttons">
                         <div id="topButtons">
-                            <input type="button" value="C" class="buttons" style="background: #9F9F9F;">
-                            <input type="button" value="Del" class="buttons" style="background: #9F9F9F;">
-                            <input type="button" value="+/-" class="buttons" style="background: #9F9F9F;">
-                            <input type="button" value="%" class="buttons" style="background: #9F9F9F;">
+                            <input type="button" value="C" class="buttons" style="background: #9F9F9F; color: black;">
+
+                            <input type="button" value="+/-" class="buttons" style="background: #9F9F9F; color: black;">
+                            <input type="button" value="%" class="buttons" style="background: #9F9F9F; color: black;">
                             <input type="button" value="÷" class="buttons" style="background: #F69A05";>
                         </div>
-                        <div id="row2">
-                            <input type="button" value="7" class="buttons nums" >
+                        <div id="row2" style="">
+                            <input type="button" value="7" class="buttons nums" onclick="display.value = '7' ">
                             <input type="button" value="8" class="buttons nums">
                             <input type="button" value="9" class="buttons nums">
                             <input type="button" value="x" class="buttons" style="background: #F69A05">
@@ -40,9 +42,11 @@
                             <input type="button" value="+" class="buttons" style="background: #F69A05">
                         </div>
                         <div id="row5">
-                            <input type="button" value="0" class="buttons">
-                            <input type="button" value="." class="buttons">
+                            <input type="button" value="0" class="buttons nums">
+                            <input type="button" value="." class="buttons nums">
+                            <input type="button" value="Del" class="buttons" style="background: #9F9F9F; color: black;">
                             <input type="button" value="=" class="buttons" style="background: #F69A05">
+
                         </div>
                     </div>
 
