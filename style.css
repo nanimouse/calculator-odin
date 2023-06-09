@@ -61,3 +61,16 @@ form {
 .nums{
     background: #313131;
 }
+
+.functional {
+    background: #9F9F9F;
+    color: black;
+}
+
+.mathFuncs{
+    background: #F69A05;
+}
+
+#period{
+    background: #313131;
+}
