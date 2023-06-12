@@ -34,10 +34,19 @@ form {
     margin-right: 12px;
 }
 
+#topDisplay{
+    height: 25px;
+    width: 100%;
+    color: #fff;
+    border: 0;
+    text-align: right;
+    font-size: 25px;
+}
+
 #display{
-    border-radius: 10px;
     height: 50px;
     width: 100%;
+    margin-top: 5px;
 
     background: transparent;
     color: #fff;
@@ -71,6 +80,10 @@ form {
     background: #F69A05;
 }
 
-#period{
+#equals{
+    background: #F69A05;
+}
+
+#decimal{
     background: #313131;
 }
