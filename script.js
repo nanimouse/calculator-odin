@@ -9,7 +9,7 @@ let decimal = document.querySelector("#decimal");
 let equals = document.querySelector("#equals");
 
 // let negative = document.querySelector("#neg");
-// let percent = document.querySelector("#percent");
+let percentage = document.querySelector("#percent");
 let mathFuncsGroup = document.getElementsByClassName("mathFuncs");
 let mathFuncs = Array.from(mathFuncsGroup);
 
@@ -30,7 +30,7 @@ const divi = (a, b) => a / b;
 
 //math function
 const operate = (a, operator, b) => {
-    debugger;
+    // debugger;
 
     a = Number(a);
     b = Number(b);
@@ -47,6 +47,7 @@ const operate = (a, operator, b) => {
             return result = divi(a,b);
         default: return null;
     }
+
 }
 
 //shows numbers on display
@@ -65,27 +66,20 @@ numbers.forEach(num => num.addEventListener('click', function(e){
 
 }));
 
+//adds numbers to their respective global variables
 const numHandler = num => {
     // debugger;
 
     if(firstNum.toString().length < 10 && operator == ""){
-
         if(result !== ""){
             firstNum = result.toString();
             firstNum += num;
         } else {
             firstNum += num;
         }
-
-
-
     } else if(operator != ""){
         secondNum += num;
     }
-
-    // console.log(firstNum + operator + secondNum);
-
-
 }
 
 //shows math functions in display
@@ -97,15 +91,17 @@ mathFuncs.forEach(mFunc => mFunc.addEventListener('click', function(e){
 
 //shows decimal in display
 decimal.addEventListener('click', function(e){
+    debugger;
     if(!display.innerHTML.includes(".")){
         display.innerHTML += e.target.value;
+        firstNum += e.target.value;
     }
 })
 
 //clears display
 clear.addEventListener('click', function(){
     // debugger;
-    if(topDisplay.innerHTML != "" && display.innerHTML != ""){
+    if(topDisplay.innerHTML != "" || display.innerHTML != ""){
         display.innerHTML = 0;
         topDisplay.innerHTML = "";
     }
@@ -118,7 +114,7 @@ clear.addEventListener('click', function(){
 
 //deletes character from display
 del.addEventListener('click', function(){
-    debugger;
+    // debugger;
     display.innerHTML = display.innerHTML.toString().slice(0,-1);
 
     if(operator == ""){
@@ -130,6 +126,7 @@ del.addEventListener('click', function(){
 
 });
 
+//add operator to display and variable
 const operatorHandler = op => {
     operator = "";
     operator += op;
@@ -151,12 +148,21 @@ equals.addEventListener('click', () => {
 })
 
 
-// percent.addEventListener('click', function(){
+percentage.addEventListener('click', (a, b) => {
+    // debugger;
+    a = firstNum;
+    b = secondNum;
+    let res = (a*b)/100;
 
-// })
+    secondNum = res;
+
+    display.innerHTML = res;
+
+})
 
 /* to do
-make percent button work
+
 make +/- button work
+make decimal button work
 
 */
