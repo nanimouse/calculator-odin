@@ -7,8 +7,7 @@ let clear = document.querySelector("#clear");
 let del = document.querySelector("#del");
 let decimal = document.querySelector("#decimal");
 let equals = document.querySelector("#equals");
-
-// let negative = document.querySelector("#neg");
+let negative = document.querySelector("#neg");
 let percentage = document.querySelector("#percent");
 let mathFuncsGroup = document.getElementsByClassName("mathFuncs");
 let mathFuncs = Array.from(mathFuncsGroup);
@@ -84,17 +83,38 @@ const numHandler = num => {
 
 //shows math functions in display
 mathFuncs.forEach(mFunc => mFunc.addEventListener('click', function(e){
+
+    // debugger;
     let showFunc = e.target.value;
     display.innerHTML += showFunc;
-    operatorHandler(showFunc);
+
+    if(operator != ""){
+
+        topDisplay.innerHTML = operate(firstNum, operator, secondNum);
+        display.innerHTML = display.innerHTML.toString().slice(-1)
+        firstNum = operate(firstNum, operator, secondNum);
+        secondNum = "";
+    } else {
+       operatorHandler(showFunc);
+    }
+
+
+
 }))
 
 //shows decimal in display
 decimal.addEventListener('click', function(e){
-    debugger;
+    // debugger;
     if(!display.innerHTML.includes(".")){
-        display.innerHTML += e.target.value;
-        firstNum += e.target.value;
+        if(operator == ""){
+            display.innerHTML += e.target.value;
+            firstNum += e.target.value;
+        } else {
+            display.innerHTML += e.target.value;
+            secondNum += e.target.value;
+        }
+
+
     }
 })
 
@@ -142,12 +162,16 @@ equals.addEventListener('click', () => {
     display.innerHTML = "";
     display.innerHTML += operate(firstNum, operator, secondNum);
 
+    if(display.innerHTML.length > 10){
+        display.innerHTML = display.innerHTML.toString().slice(0, 10);
+    }
+
     firstNum = result;
     secondNum = "";
     operator = "";
 })
 
-
+//percent button
 percentage.addEventListener('click', (a, b) => {
     // debugger;
     a = firstNum;
@@ -160,9 +184,32 @@ percentage.addEventListener('click', (a, b) => {
 
 })
 
-/* to do
+//negative / positive button
+negative.addEventListener('click', () => {
+    // debugger;
 
-make +/- button work
-make decimal button work
+    if(operator == ""){
+        if(!display.innerHTML.includes("-")){
 
-*/
+            firstNum = '-' + firstNum
+            display.innerHTML = firstNum;
+
+    } else {
+            firstNum = firstNum.toString().slice(1);
+            display.innerHTML = firstNum;
+            // console.log(firstNum);
+        }
+    } else {
+        if(!display.innerHTML.includes("-")){
+
+            secondNum = '-' + secondNum
+            display.innerHTML = secondNum;
+
+    } else {
+            secondNum = secondNum.toString().slice(1);
+            display.innerHTML = secondNum;
+            // console.log(secondNum);
+        }
+    }
+})
+
