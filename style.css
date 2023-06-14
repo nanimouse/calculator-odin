@@ -11,16 +11,18 @@
     height: 100vh;
     background: #e3f9ff;
     padding-top: 50px;
-
+    display: flex;
+    justify-content: center;
 }
 
 #calculator{
-    display: table;
-    margin: 0 auto;
+    /* display: table; */
+    /* margin: 0 auto; */
     background: #000;
     border-radius: 34px;
     padding: 10px;
-    /* height: 100px; */
+    /* margin-bottom: 70px; */
+    height: 537px;
 }
 
 form {
@@ -86,4 +88,11 @@ form {
 
 #decimal{
     background: #313131;
+}
+
+#instructions{
+    text-align: center;
+    line-height: 25px;
+    margin-top: 75px;
+    margin-left: 60px;
 }

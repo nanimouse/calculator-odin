@@ -1,4 +1,3 @@
-// debugger;
 
 let topDisplay = document.getElementById("topDisplay");
 let display = document.getElementById("display");
@@ -29,7 +28,7 @@ const divi = (a, b) => a / b;
 
 //math function
 const operate = (a, operator, b) => {
-    // debugger;
+    debugger;
 
     a = Number(a);
     b = Number(b);
@@ -94,6 +93,7 @@ mathFuncs.forEach(mFunc => mFunc.addEventListener('click', function(e){
         display.innerHTML = display.innerHTML.toString().slice(-1)
         firstNum = operate(firstNum, operator, secondNum);
         secondNum = "";
+        operatorHandler(showFunc);
     } else {
        operatorHandler(showFunc);
     }
@@ -133,8 +133,8 @@ clear.addEventListener('click', function(){
 });
 
 //deletes character from display
-del.addEventListener('click', function(){
-    // debugger;
+
+del.addEventListener('click', () => {
     display.innerHTML = display.innerHTML.toString().slice(0,-1);
 
     if(operator == ""){
@@ -142,8 +142,6 @@ del.addEventListener('click', function(){
     } else {
         secondNum = secondNum.toString().slice(0,-1);
     }
-
-
 });
 
 //add operator to display and variable
@@ -213,3 +211,157 @@ negative.addEventListener('click', () => {
     }
 })
 
+//keyboard support
+document.addEventListener('keydown', (e) => {
+    debugger;
+
+    //numbers
+    if(e.key >= 0 && e.key <= 9){
+
+        if(display.innerHTML == 0 && !display.innerHTML.includes(".")){
+            display.innerHTML = "";
+        }
+        let showNum = Number(e.key);
+
+        if(display.innerHTML.length < 10){
+            display.innerHTML += showNum;
+            numHandler(showNum);
+        }
+        // alert(`${e.key} was pressed`)
+    }
+
+    //clear all
+    if(e.key === "a" || e.key === "A"){
+        if(topDisplay.innerHTML != "" || display.innerHTML != ""){
+            display.innerHTML = 0;
+            topDisplay.innerHTML = "";
+        }
+
+        firstNum = "";
+        secondNum = "";
+        operator = "";
+        result = "";
+    }
+
+    //delete
+    if(e.key === "Backspace"){
+        display.innerHTML = display.innerHTML.toString().slice(0,-1);
+
+    if(operator == ""){
+        firstNum = firstNum.toString().slice(0,-1);
+    } else {
+        secondNum = secondNum.toString().slice(0,-1);
+    }
+    }
+
+    //percent
+    if(e.key === "%"){
+        // debugger;
+        a = firstNum;
+    b = secondNum;
+    let res = (a*b)/100;
+
+    secondNum = res;
+
+    display.innerHTML = res;
+
+    }
+
+    //divide
+    if(e.key === "/"){
+        let divide = e.key;
+        divide = "÷";
+
+        operatorHandler(divide);
+
+        let showFunc = divide;
+        topDisplay.innerHTML += showFunc;
+    }
+
+    //multiply
+    if(e.key === "*"){
+        let multiply = "x";
+        operatorHandler(multiply);
+
+        let showFunc = multiply;
+        topDisplay.innerHTML += showFunc;
+    }
+
+    //subtract
+    if(e.key === "-"){
+        operatorHandler(e.key);
+
+        let showFunc = e.key;
+        topDisplay.innerHTML += showFunc;
+    }
+
+    //add
+    if(e.key === "+"){
+        operatorHandler(e.key);
+
+        let showFunc = e.key;
+        topDisplay.innerHTML += showFunc;
+    }
+
+    //equals
+    if(e.key === "Enter"){
+        topDisplay.innerHTML += display.innerHTML + "=";
+    display.innerHTML = "";
+    display.innerHTML += operate(firstNum, operator, secondNum);
+
+    if(display.innerHTML.length > 10){
+        display.innerHTML = display.innerHTML.toString().slice(0, 10);
+    }
+
+    firstNum = result;
+    secondNum = "";
+    operator = "";
+    }
+
+    //decimal
+    if(e.key === "."){
+
+        if(!display.innerHTML.includes(".")){
+            if(operator == ""){
+                display.innerHTML += e.key;
+                firstNum += e.key;
+            } else {
+                display.innerHTML += e.key;
+                secondNum += e.key;
+            }
+        }
+
+
+
+
+
+    }
+
+    //negative
+    if(e.key === "_"){
+        if(operator == ""){
+            if(!display.innerHTML.includes("-")){
+
+                firstNum = '-' + firstNum
+                display.innerHTML = firstNum;
+
+        } else {
+                firstNum = firstNum.toString().slice(1);
+                display.innerHTML = firstNum;
+                // console.log(firstNum);
+            }
+        } else {
+            if(!display.innerHTML.includes("-")){
+
+                secondNum = '-' + secondNum
+                display.innerHTML = secondNum;
+
+        } else {
+                secondNum = secondNum.toString().slice(1);
+                display.innerHTML = secondNum;
+                // console.log(secondNum);
+            }
+        }
+    }
+
+})
