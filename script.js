@@ -28,7 +28,7 @@ const divi = (a, b) => a / b;
 
 //math function
 const operate = (a, operator, b) => {
-    debugger;
+    // debugger;
 
     a = Number(a);
     b = Number(b);
@@ -90,7 +90,7 @@ mathFuncs.forEach(mFunc => mFunc.addEventListener('click', function(e){
     if(operator != ""){
 
         topDisplay.innerHTML = operate(firstNum, operator, secondNum);
-        display.innerHTML = display.innerHTML.toString().slice(-1)
+        display.innerHTML = display.innerHTML.toString().slice(-1);
         firstNum = operate(firstNum, operator, secondNum);
         secondNum = "";
         operatorHandler(showFunc);
@@ -146,10 +146,11 @@ del.addEventListener('click', () => {
 
 //add operator to display and variable
 const operatorHandler = op => {
+    // debugger;
     operator = "";
     operator += op;
 
-    topDisplay.innerHTML = display.innerHTML;
+    topDisplay.innerHTML += display.innerHTML;
     display.innerHTML = "";
 }
 
@@ -266,6 +267,9 @@ document.addEventListener('keydown', (e) => {
     display.innerHTML = res;
 
     }
+
+
+    
 
     //divide
     if(e.key === "/"){
