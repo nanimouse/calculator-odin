@@ -89,7 +89,7 @@ mathFuncs.forEach(mFunc => mFunc.addEventListener('click', function(e){
 
     if(operator != ""){
 
-        topDisplay.innerHTML = operate(firstNum, operator, secondNum);
+            topDisplay.innerHTML = operate(firstNum, operator, secondNum);
         display.innerHTML = display.innerHTML.toString().slice(-1);
         firstNum = operate(firstNum, operator, secondNum);
         secondNum = "";
@@ -269,18 +269,40 @@ document.addEventListener('keydown', (e) => {
     }
 
 
-    
+
 
     //divide
     if(e.key === "/"){
+        debugger
+
         let divide = e.key;
         divide = "÷";
+let showFunc = divide;
 
-        operatorHandler(divide);
+        if(operator != ""){
 
-        let showFunc = divide;
+            topDisplay.innerHTML = operate(firstNum, operator, secondNum);
+        display.innerHTML = display.innerHTML.toString().slice(-1);
+        firstNum = operate(firstNum, operator, secondNum);
+        secondNum = "";
+        operatorHandler(showFunc);
+    } else {
+       operatorHandler(showFunc);
+    }
+
+
+
+
+        // operatorHandler(divide);
+
+
         topDisplay.innerHTML += showFunc;
     }
+
+
+
+
+
 
     //multiply
     if(e.key === "*"){

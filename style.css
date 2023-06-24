@@ -43,6 +43,7 @@ form {
     border: 0;
     text-align: right;
     font-size: 25px;
+    /* word-wrap: break-word; */
 }
 
 #display{
@@ -67,10 +68,12 @@ form {
     cursor: pointer;
     border: 0;
     margin: 2px;
+    outline: none;
 }
 
 .nums{
     background: #313131;
+    outline: none;
 }
 
 .functional {
